@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active > strong {
+    font-weight: bold;
+    color: blue;
+}
+
+.active > span {
+    color: blue;
+}
+
+.body{
+    overflow-y: hidden;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
