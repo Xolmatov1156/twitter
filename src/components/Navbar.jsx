@@ -5,6 +5,7 @@ import NavbarItem from '../components/NavbarItem'
 import Button from './Button'
 import Avatar from '../assets/images/avatar.svg'
 function Navbar() {
+  const userData = JSON.parse(window.localStorage.getItem("token"))
   const navbarList = [
     {
       id:1,
@@ -67,10 +68,10 @@ function Navbar() {
       <div className='flex mt-[100px]'>
         <img src={Avatar} alt="Avatar" width={50} height={50}/>
         <div className='flex flex-col pl-[10px]'>
-          <strong>Bobour</strong>
-          <a href="mailto:">@bobur_mavlonov</a>
+          <strong className='capitalize'>{userData.login}</strong>
+          <a href="mailto:">@{userData.login}</a>
         </div>
-        <button className='ml-[30px]'><Dots/></button>
+        <button className='ml-[40px]'><Dots/></button>
       </div>
     </div>
 
