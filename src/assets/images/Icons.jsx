@@ -338,7 +338,7 @@ function Location(){
   )
 }
 
-function Link(){
+function LinkIcon(){
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g opacity="0.6">
@@ -377,4 +377,4 @@ function Date(){
 
   )
 }
-export {TwitterIcon, HomeIcon, ExploreIcon, Notifications, Messages, Bookmarks, Lists, Profile, More, HomeTwitterIcon, ModeBtn, Dots, SaveImg, Gif, Stats, Smile, Schedule, CommentIcon, RetweetIcon, LikeIcon, Share, StatisticIcon, Back, Location, Link, Ballon, Date}
+export {TwitterIcon, HomeIcon, ExploreIcon, Notifications, Messages, Bookmarks, Lists, Profile, More, HomeTwitterIcon, ModeBtn, Dots, SaveImg, Gif, Stats, Smile, Schedule, CommentIcon, RetweetIcon, LikeIcon, Share, StatisticIcon, Back, Location, LinkIcon, Ballon, Date}

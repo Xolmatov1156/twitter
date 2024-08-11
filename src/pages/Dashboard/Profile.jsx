@@ -1,8 +1,8 @@
 import React from 'react'
-import {ModeBtn, Back, Location, Link, Ballon, Date} from '../../assets/images/Icons'
+import {ModeBtn, Back, Location, LinkIcon, Ballon, Date,} from '../../assets/images/Icons'
 import ProfileBg from '../../assets/images/profile_bg.png'
 import Avatar from '../../assets/images/avatar.svg'
-import Button from '../../components/Button'
+import { Link, Outlet } from 'react-router-dom'
 const token = JSON.parse(localStorage.getItem("token"))
 function Profile() {
   return (
@@ -22,7 +22,7 @@ function Profile() {
             <img src={ProfileBg} alt="Profile Bg"  height={280}/>
             <div className='flex justify-between -translate-y-[80px] px-[25px] items-end'>
             <img src={Avatar} alt="Avatar" width={150} height={150}/>
-            <Button extraStyle={"w-[120px] h-[44px] py-[10px] bg-white text-black border-[1px] border-slate-400"} title={'Edit profile'}/>
+            <button className={"w-[120px] h-[44px] py-[10px] bg-white text-black border-[1px] border-slate-400 rounded-[25px]"}>Edit profile</button>
             </div>
           </div>
           <div className='mt-[100px] px-[25px] flex flex-col'>
@@ -35,7 +35,7 @@ function Profile() {
                 <span className='text-[15px]'>Mashag’daman</span>
               </li>
               <li className='flex space-x-[5px]'>
-                <Link/>
+                <LinkIcon/>
                 <span className='text-[15px] text-[#1DA1F2]'>t.me/boburjon_mavlonov</span>
               </li>
               <li className='flex space-x-[5px]'>
@@ -52,6 +52,13 @@ function Profile() {
               <p className='text-slate-500'><span className='font-bold text-black'>47</span> Followers</p>
             </div>
           </div>
+          <ul className='flex justify-between px-[25px] mt-[40px] pb-[15px] border-b-[1px] border-slate-500'>
+            <li><Link to={''}>Tweets</Link></li>
+            <li><Link to={'tweets-replies'}>Tweets & replies</Link></li>
+            <li><Link to={'media'}>Media</Link></li>
+            <li><Link to={'link'}>Likes</Link></li>
+          </ul>
+          <Outlet/>
       </div>
     <div className='w-[25%]'></div>
     </div>
