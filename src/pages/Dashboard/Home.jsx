@@ -1,56 +1,36 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { ModeBtn, SaveImg, Stats, Gif, Smile, Schedule } from '../../assets/images/Icons'
 import Avatar from '../../assets/images/avatar.svg'
 import Button from '../../components/Button'
-import User1 from '../../assets/images/user1.svg'
-import User2 from '../../assets/images/user2.svg'
-import User3 from '../../assets/images/user3.svg'
-import Kebab from '../../assets/images/kebab.png'
 import PostItem from '../../components/PostItem'
+import { Context } from '../../context/Context'
 
 function Home() {
+  const {postList, setPostList} = useContext(Context)
+  const [postImg, setPostImg] = useState("")
+  const token = JSON.parse(localStorage.getItem("token"))
   const [postValue,setPostValue] = useState("")
-  const [postList, setPostList] = useState([
+ 
+
+  function handleSubmitPost(e){
+    e.preventDefault()
+    const data =  
     {
-      id:1,
-      name:"Designsta",
-      imgUrl:User1,
+      id: postList.length ? postList[postList.length - 1].id + 1 : 1,
+      name:token?.login,
+      imgUrl:Avatar,
       email:"@inner · 25m",
-      description:"Twitterdagi ayol-erkak qarama-qarshiliginglardan o'zinglar zerikmadinglarmi?",
-      commentCount:"10",
-      replyCount:"1",
-      likeCount:"8",
-      uploadCount:null,
-      statisticCount:null,
-      postImg:null
-    },
-    {
-      id:2,
-      name:"cloutexhibition",
-      imgUrl:User2,
-      email:"@RajLahoti · 22m",
-      description:"YPIP dasturining bu yilgi sezoni ham o’z nihoyasiga yetmoqda. Mentorlik davomida talaba va yangi bitiruvchilarni o’sayotganini ko’rib hursand bo’ladi odam.",
+      description:e.target.postValue.value,
       commentCount:null,
-      replyCount:"5",
-      likeCount:"9",
+      replyCount:null,
+      likeCount:null,
       uploadCount:null,
       statisticCount:null,
-      postImg:null
-    },
-    {
-      id:3,
-      name:"CreativePhoto",
-      imgUrl:User3,
-      email:"@cloutexhibition · 1h",
-      description:"Обетда.....  Кечиринглар",
-      commentCount:"10",
-      replyCount:"1",
-      likeCount:"8",
-      uploadCount:null,
-      statisticCount:null,
-      postImg:Kebab
-    }
-  ])
+      postImg:postImg
+      }
+      setPostList([data, ...postList])
+      e.target.reset()
+  }
   return (
     <>
     <div className='w-[80%]'>
@@ -59,13 +39,13 @@ function Home() {
         <h2 className='text-[24px] font-bold'>Home</h2>
         <button><ModeBtn/></button>
       </div>
-      <form className='pb-[46px] border-b-[1px] border-slate-400 relative pl-[22px] flex items-start gap-[15px]'>
+      <form onSubmit={handleSubmitPost} className='pb-[46px] border-b-[1px] border-slate-400 relative pl-[22px] flex items-start gap-[15px]'>
       <img src={Avatar} alt="Avatar" width={60} height={60}/>
       <div className='flex flex-col gap-[51px]'>
       <input onChange={(e) => setPostValue(e.target.value)} type="text" placeholder='What’s happening' name='postValue' className='mt-[11px] font-semibold text-[22px] outline-none'/>
       <div className='flex space-x-[20px]'>
         <label>
-          <input type="file" className='hidden'/>
+          <input required onChange={(e) => setPostImg(URL.createObjectURL(e.target.files[0]))} type="file" className='hidden'/>
           <SaveImg/>
         </label>
         <label>
@@ -86,7 +66,7 @@ function Home() {
         </label>
       </div>
       </div>
-      <Button title={'Tweet'} type={'submit'} extraStyle={`w-[108px] py-[13px] absolute bottom-[5px] right-[18px] ${postValue ? "" : "opacity-[40%]"}`}/>
+      <Button title={'Tweet'} type={'submit'} width={108} extraStyle={` py-[13px] absolute bottom-[5px] right-[18px] ${postValue ? "" : "opacity-[40%]"}`}/>
       </form>
       <ul>
         {postList.length > 0 && postList.map(item => <PostItem key={item.id} item={item}/>)}
