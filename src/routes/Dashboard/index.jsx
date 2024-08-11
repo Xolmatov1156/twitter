@@ -8,7 +8,7 @@ const Home = lazy(() => new Promise(resolve => {
 }))
 
 const Profile = lazy(() => new Promise(resolve => {
-  return setTimeout(() => resolve(import("../../pages/Dashboard/Home")),1500)
+  return setTimeout(() => resolve(import("../../pages/Dashboard/Profile")),1500)
 }))
 
 function DashboardPage() {

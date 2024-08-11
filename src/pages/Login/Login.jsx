@@ -13,7 +13,7 @@ function Login() {
       login:e.target.login.value.trim().toLowerCase(),
       password:e.target.password.value.trim().toLowerCase()
     }
-    if (data.login == "ulugbek" && data.password == "123") {
+    if (data.login == "bobur" && data.password == "123") {
       setToken(data)
       e.target.reset()
     }
